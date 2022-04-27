@@ -1,0 +1,15 @@
+{
+  "name": "compose-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/bailey-byb/compose-example",
+  "author": "Bailey <bailey@beforeyoubid.com.au>",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "yarn serverless deploy"
+  },
+  "devDependencies": {
+    "@serverless/compose": "^1.0.1",
+    "serverless": "^3.15.2"
+  }
+}
