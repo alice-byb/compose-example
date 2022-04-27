@@ -1,0 +1,49 @@
+service: backend
+
+frameworkVersion: '>=3.15.0'
+
+useDotenv: true
+provider:
+  name: aws
+  profile: serverless-profile
+  runtime: nodejs14.x
+  stage: ${opt:stage, 'production'}
+  region: us-west-2
+  timeout: 30
+  memorySize: 128
+  iam:
+    role: ${env:LAMBDA_ROLE_ARN}
+  environment:
+    NODE_ENV: ${env:NODE_ENV, 'production'}
+    STAGE: ${opt:stage, 'production'}
+
+plugins:
+  - serverless-domain-manager
+
+custom:
+  stage: ${opt:stage, 'production'}
+  domain: ${env:DOMAIN, 'somedomainhere.com'}
+  customDomain:
+    autoDomain: true
+    basePath: ''
+    certificateName: '*.${self:custom.domain}'
+    createRoute53Record: true
+    domainName: ${self:custom.${self:custom.stage}.api_domain}
+    stage: ${self:provider.stage}
+
+  dev:
+    api_domain: dev-test-api.${self:custom.domain}
+
+  qa:
+    api_domain: qa-test-api.${self:custom.domain}
+
+  production:
+    api_domain: api-test.${self:custom.domain}
+
+functions:
+  backend:
+    handler: src/backend.default
+    events:
+      - http:
+          path: /{any+}
+          method: post
