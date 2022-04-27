@@ -1,0 +1,6 @@
+services:
+  backend:
+    path: backend
+
+  backend-without-domain:
+    path: backend-without-domain
