@@ -11,8 +11,6 @@ provider:
   region: us-west-2
   timeout: 30
   memorySize: 128
-  iam:
-    role: ${env:LAMBDA_ROLE_ARN}
   environment:
     NODE_ENV: ${env:NODE_ENV, 'production'}
     STAGE: ${opt:stage, 'production'}
