@@ -1,0 +1,17 @@
+{
+  "name": "backend-with-layers",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless": "^3.15.2",
+    "serverless-webpack": "^5.7.0",
+    "serverless-webpack-layers": "2.0.6",
+    "webpack": "^5.72.0",
+    "webpack-merge": "^5.8.0",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
+}

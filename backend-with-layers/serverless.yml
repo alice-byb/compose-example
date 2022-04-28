@@ -1,0 +1,47 @@
+service: backend-with-layers
+
+frameworkVersion: '>=3.15.0'
+
+useDotenv: true
+provider:
+  name: aws
+  profile: serverless-profile
+  runtime: nodejs14.x
+  stage: ${opt:stage, 'production'}
+  region: us-west-2
+  timeout: 30
+  memorySize: 128
+  environment:
+    NODE_ENV: ${env:NODE_ENV, 'production'}
+    STAGE: ${opt:stage, 'production'}
+
+plugins:
+  - serverless-webpack-layers
+  - serverless-webpack
+
+custom:
+  stage: ${opt:stage, 'production'}
+  webpack:
+    packager: yarn
+    webpackConfig: './webpack/config.functions.js'
+    includeModules: false
+  layerConfig:
+    packager: yarn
+    manageNodeFolder: true
+    webpack:
+      clean: true
+      minify: false
+      configPath: './webpack/config.modules.js'
+
+layers:
+  lib:
+    path: '.serverless'
+    name: backend-with-layers-layer-${self:custom.stage}
+    description: node_modules
+    retain: false
+
+functions:
+  backend:
+    handler: src/backend.default
+    layers:
+      - { Ref: LibLambdaLayer }
