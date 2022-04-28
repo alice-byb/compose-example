@@ -4,3 +4,6 @@ services:
 
   backend-without-domain:
     path: backend-without-domain
+
+  backend-with-layers:
+    path: backend-with-layers
