@@ -1,0 +1,10 @@
+{
+  "name": "backend-without-scripts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "serverless": "3.21.0",
+    "serverless-plugin-scripts": "^1.0.2"
+  }
+}
