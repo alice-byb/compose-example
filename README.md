@@ -1,6 +1,6 @@
 # compose example
 
-this repo is an example of how to use serverless compose w/ two example repos inside to test deployment
+this repo is an example of how to use serverless compose w/ four example repos inside to test deployment
 
 ## setup
 
@@ -9,6 +9,8 @@ to set this up, you will need to install node modules for each repo:
     yarn
     cd backend && yarn
     cd backend-without-domain && yarn
+    cd backend-with-layers && yarn
+    cd backend-with-scripts && yarn
 
 you will also need to setup:
 
