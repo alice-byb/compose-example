@@ -7,3 +7,6 @@ services:
 
   backend-with-layers:
     path: backend-with-layers
+
+  backend-with-scripts:
+    path: backend-with-scripts
